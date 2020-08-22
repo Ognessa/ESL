@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
         //final SQLiteDatabase database = dbHelper.getWritableDatabase();
 
         //get List<String>
-        ArrayList<Product> mProductArrayList = new ArrayList<Product>();
+        ArrayList<Product> mProductArrayList = new ArrayList<>();
 
         String GET_ALL_NOTES = "SELECT * FROM " + DatabaseHelper.TABLE + " ORDER BY "+DatabaseHelper.COLUMN_NAME + " ASC";
 
@@ -65,41 +65,32 @@ public class MainActivity extends AppCompatActivity{
         //set search to list
         lv.setTextFilterEnabled(true);
         editText.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                //MainActivity.this.adapt.getFilter().filter(s);
-                String searchString=editText.getText().toString();
+                //String searchString=editText.getText().toString();
                 adapter.getFilter().filter(s.toString());
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-
-            }
+            public void afterTextChanged(Editable s) { }
         });
 
         //float button to sed me a new word
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //alert dialog builder
                 AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
-
-                //button for send me
                 a_builder.setMessage(R.string.message2)
+                        //button for send me
                         .setPositiveButton(R.string.posbutt, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Intent browserIntent = new
+                                        //set your link on button
                                         Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/carrira_elan?r=nametag"));
                                 startActivity(browserIntent);
                                 dialogInterface.cancel();

@@ -1,5 +1,7 @@
 package carrira.elan.englishslanglist;
 
+//row template
+
 public class Product {
     public String name;
     public String expl;
@@ -7,18 +9,6 @@ public class Product {
     public Product(String name, String expl) {
         super();
         this.name = name;
-        this.expl = expl;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getExplanation() {
-        return expl;
-    }
-    public void setExplanation(String expl) {
         this.expl = expl;
     }
 }

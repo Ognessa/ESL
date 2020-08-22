@@ -41,7 +41,7 @@ public class MyListAdapter extends BaseAdapter implements Filterable {
         return position;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         LinearLayout llContainer;
         TextView tvName,tvPrice;
     }
@@ -49,7 +49,7 @@ public class MyListAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder = null;
+        ViewHolder holder;
 
         if (convertView == null) {
 
@@ -83,18 +83,12 @@ public class MyListAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
-                ArrayList<Product> FilteredArrList = new ArrayList<Product>();
+                ArrayList<Product> FilteredArrList = new ArrayList<>();
 
                 if (mOriginalValues == null) {
-                    mOriginalValues = new ArrayList<Product>(mDisplayedValues); // saves the original data in mOriginalValues
+                    mOriginalValues = new ArrayList<>(mDisplayedValues); // saves the original data in mOriginalValues
                 }
 
-                /********
-                 *
-                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
-                 *  else does the Filtering and returns FilteredArrList(Filtered)
-                 *
-                 ********/
                 if (constraint == null || constraint.length() == 0) {
 
                     // set the Original result to return
