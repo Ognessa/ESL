@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">English Slang List</string>
+
+    <string name="message1">Do you want to add a new slang?</string>
+    <string name="message2">Enter new word:</string>
+    <string name="posbutt">Add</string>
+    <string name="negbutt">Cansel</string>
+</resources>
