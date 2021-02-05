@@ -1,4 +1,4 @@
-package carrira.elan.englishslanglist;
+package car.elan.englishlist;
 
 import android.content.ContentValues;
 import android.content.Context;

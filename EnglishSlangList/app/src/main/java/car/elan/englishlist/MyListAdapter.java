@@ -1,4 +1,4 @@
-package carrira.elan.englishslanglist;
+package car.elan.englishlist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.elan.englishslanglist.R;
 
 import java.util.ArrayList;
 

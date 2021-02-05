@@ -1,4 +1,4 @@
-package carrira.elan.englishslanglist;
+package car.elan.englishlist;
 
 //row template
 
