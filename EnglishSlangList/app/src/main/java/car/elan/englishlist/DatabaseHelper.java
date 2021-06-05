@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "slenglist.db"; // DB name
-    private static int DATABASE_VERSION = 26; // DB version
+    private static int DATABASE_VERSION = 27; // DB version
     public static final String TABLE = "sleng"; // DB table name
 
     //column names
@@ -58,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Absobloodylutely', 'Yes indeed!');");
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Nosh', 'Food');");
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Shambles', 'Mess');");
-        db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Arse over tit', 'Fall over');");
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Dog’s dinner', 'A mess');");
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Bangers', 'Sausage');");
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES ('Chips', 'French fries');");
@@ -115,11 +114,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void addNewWords(String name, String explain){
         SQLiteDatabase db = this.getWritableDatabase();
-        //db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_NAME + ", " + COLUMN_EXPLAIN  + ") VALUES (" + name + ", " + explain + ");");
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_EXPLAIN, explain);
         db.insert(TABLE, null, values);
+    }
+
+    //cтворює новий рядок замість видалення
+    public void delete(String name) {
+        String sql = "DELETE FROM "+ TABLE +" WHERE "+COLUMN_NAME+"="+ name +";";
+        /*SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);*/
+
     }
 
     //DB upgrade

@@ -9,10 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
@@ -61,6 +65,42 @@ public class MainActivity extends AppCompatActivity{
             public void afterTextChanged(Editable s) { }
         });
 
+        //delete item from DB
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, final long id) {
+
+                TextView name = (TextView) view.findViewById(R.id.textView);
+                final String text = name.getText().toString();
+
+                AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                a_builder.setMessage(R.string.posdeletebutt)
+
+                        //button for delete word
+                        .setPositiveButton(R.string.posbutt, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dbHelper.delete(text);
+                                dialogInterface.cancel();
+                            }
+                        })
+
+                        //cansel button
+                        .setNeutralButton(R.string.negbutt, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                AlertDialog alert = a_builder.create();
+                alert.setTitle(R.string.message4);
+                alert.show();
+
+                return false;
+            }
+        });
+
         //float button to sed me a new word
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +123,7 @@ public class MainActivity extends AppCompatActivity{
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dbHelper.addNewWords(input1.getText().toString(), input2.getText().toString());
+                                updateListView(); //перевірити чи оновить список!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 dialogInterface.cancel();
                             }
                         })
